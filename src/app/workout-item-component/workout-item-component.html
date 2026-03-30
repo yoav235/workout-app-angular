@@ -1,0 +1,51 @@
+<div class="workout-item">
+  <h2 class="exercise-name">{{ exerciseName }}</h2>
+
+  <textarea
+    class="comment"
+    [(ngModel)]="comment"
+    placeholder="Add a comment about this exercise..."
+    rows="2"
+  ></textarea>
+
+  <div class="sets-list">
+    <div class="set-header">
+      <span>Reps</span>
+      <span>Weight (kg)</span>
+      <span>Done</span>
+      <span>Next</span>
+      <span></span>
+    </div>
+
+    <div class="set-row" *ngFor="let set of sets; let i = index">
+      <input
+        type="number"
+        [(ngModel)]="set.reps"
+        min="0"
+        placeholder="Reps"
+      />
+      <input
+        type="number"
+        [(ngModel)]="set.weight"
+        min="0"
+        step="0.5"
+        placeholder="Weight"
+      />
+      <input
+        type="checkbox"
+        [(ngModel)]="set.completed"
+        class="completed-checkbox"
+      />
+      <select [(ngModel)]="set.change_weight" class="change-weight">
+        <option value="-">-</option>
+        <option value="up">↑ Up</option>
+        <option value="down">↓ Down</option>
+      </select>
+      <button class="delete-btn" (click)="deleteSet(i)" title="Delete set">
+        🗑
+      </button>
+    </div>
+  </div>
+
+  <button class="add-set-btn" (click)="addSet()">+ Add Set</button>
+</div>
