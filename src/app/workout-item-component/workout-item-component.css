@@ -34,7 +34,7 @@
 .set-header,
 .set-row {
   display: grid;
-  grid-template-columns: 80px 110px 50px 110px 40px;
+  grid-template-columns: 80px 110px 50px 90px 40px;
   align-items: center;
   gap: 8px;
 }
@@ -62,12 +62,24 @@
   justify-self: center;
 }
 
-.change-weight {
-  padding: 6px 4px;
+.intensity-input {
+  padding: 6px;
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 100%;
-  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.set-row.intensity-green {
+  background-color: #d4f5d4;
+}
+
+.set-row.intensity-yellow {
+  background-color: #fff9c4;
+}
+
+.set-row.intensity-red {
+  background-color: #ffd6d6;
 }
 
 .delete-btn {

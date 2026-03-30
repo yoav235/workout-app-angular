@@ -6,7 +6,7 @@ export interface WorkoutSet {
   reps: number;
   weight: number;
   completed: boolean;
-  change_weight: 'up' | 'down' | '-';
+  intensity: number | null;
 }
 
 @Component({
@@ -20,14 +20,21 @@ export class WorkoutItemComponent {
 
   comment: string = '';
   sets: WorkoutSet[] = [
-    { reps: 0, weight: 0, completed: false, change_weight: '-' }
+    { reps: 0, weight: 0, completed: false, intensity: null }
   ];
 
   addSet(): void {
-    this.sets.push({ reps: 0, weight: 0, completed: false, change_weight: '-' });
+    this.sets.push({ reps: 0, weight: 0, completed: false, intensity: null });
+  }
+
+  clampIntensity(set: WorkoutSet): void {
+    if (set.intensity === null) return;
+    if (set.intensity > 10) set.intensity = 10;
+    if (set.intensity < 1) set.intensity = 1;
   }
 
   deleteSet(index: number): void {
     this.sets.splice(index, 1);
   }
 }
+

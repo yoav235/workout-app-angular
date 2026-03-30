@@ -13,11 +13,15 @@
       <span>Reps</span>
       <span>Weight (kg)</span>
       <span>Done</span>
-      <span>Next</span>
+      <span>Intensity</span>
       <span></span>
     </div>
 
-    <div class="set-row" *ngFor="let set of sets; let i = index">
+    <div class="set-row"
+         [class.intensity-green]="set.intensity !== null && set.intensity >= 7 && set.intensity <= 8"
+         [class.intensity-yellow]="set.intensity === 9"
+         [class.intensity-red]="set.intensity === 10"
+         *ngFor="let set of sets; let i = index">
       <input
         type="number"
         [(ngModel)]="set.reps"
@@ -36,11 +40,15 @@
         [(ngModel)]="set.completed"
         class="completed-checkbox"
       />
-      <select [(ngModel)]="set.change_weight" class="change-weight">
-        <option value="-">-</option>
-        <option value="up">↑ Up</option>
-        <option value="down">↓ Down</option>
-      </select>
+      <input
+        type="number"
+        [(ngModel)]="set.intensity"
+        min="1"
+        max="10"
+        placeholder="1-10"
+        (change)="clampIntensity(set)"
+        class="intensity-input"
+      />
       <button class="delete-btn" (click)="deleteSet(i)" title="Delete set">
         🗑
       </button>
