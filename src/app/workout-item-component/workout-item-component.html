@@ -1,5 +1,6 @@
 <div class="workout-item">
   <h2 class="exercise-name">{{ exerciseName }}</h2>
+  <p class="muscle-groups" *ngIf="muscleGroups.length > 0">{{ muscleGroups.join(', ') }}</p>
 
   <textarea
     class="comment"

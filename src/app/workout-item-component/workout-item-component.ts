@@ -18,6 +18,8 @@ export interface WorkoutSet {
 export class WorkoutItemComponent {
   @Input() exerciseName: string = 'Exercise Name';
 
+  @Input() muscleGroups: string[] = [];
+
   comment: string = '';
   sets: WorkoutSet[] = [
     { reps: 0, weight: 0, completed: false, intensity: null }

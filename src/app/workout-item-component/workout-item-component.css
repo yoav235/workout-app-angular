@@ -6,13 +6,21 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   background: #fff;
-  max-width: 600px;
+  width: 25vw;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .exercise-name {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
+}
+
+.muscle-groups {
+  margin: -8px 0 0;
+  font-size: 0.85rem;
+  color: #777;
 }
 
 .comment {
@@ -34,9 +42,10 @@
 .set-header,
 .set-row {
   display: grid;
-  grid-template-columns: 80px 110px 50px 90px 40px;
+  grid-template-columns: 1fr 1.4fr 40px 1.1fr 36px;
   align-items: center;
   gap: 8px;
+  min-width: 0;
 }
 
 .set-header {
@@ -52,6 +61,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 100%;
+  min-width: 0;
   box-sizing: border-box;
 }
 
@@ -67,6 +77,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 100%;
+  min-width: 0;
   box-sizing: border-box;
 }
 

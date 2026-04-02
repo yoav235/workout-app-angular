@@ -1,1 +1,40 @@
-<app-workout-item-component [exerciseName]="'Bench Press'"></app-workout-item-component>
+<div class="item-container">
+  <app-workout-item-component
+    *ngFor="let workout of workouts"
+    [exerciseName]="workout.name"
+    [muscleGroups]="workout.muscleGroups"
+  ></app-workout-item-component>
+</div>
+
+<button class="add-workout-btn" (click)="openForm()">+ Add Workout</button>
+
+<div class="modal-overlay" *ngIf="showForm" (click)="closeForm()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <h2>New Workout</h2>
+
+    <label for="workoutName">Workout Name</label>
+    <input
+      id="workoutName"
+      type="text"
+      [(ngModel)]="newWorkoutName"
+      placeholder="e.g. Bench Press"
+      class="name-input"
+    />
+
+    <label for="muscleGroups">Muscle Groups</label>
+    <select
+      id="muscleGroups"
+      multiple
+      [(ngModel)]="selectedMuscleGroups"
+      class="muscle-select"
+    >
+      <option *ngFor="let group of availableMuscleGroups" [value]="group">{{ group }}</option>
+    </select>
+    <p class="select-hint">Hold Ctrl (or Cmd on Mac) to select multiple</p>
+
+    <div class="modal-actions">
+      <button class="cancel-btn" (click)="closeForm()">Cancel</button>
+      <button class="confirm-btn" (click)="addWorkout()" [disabled]="!newWorkoutName.trim()">Add</button>
+    </div>
+  </div>
+</div>
