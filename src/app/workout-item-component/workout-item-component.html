@@ -19,6 +19,7 @@
     </div>
 
     <div class="set-row"
+         [class.completed]="set.completed"
          [class.intensity-green]="set.intensity !== null && set.intensity >= 7 && set.intensity <= 8"
          [class.intensity-yellow]="set.intensity === 9"
          [class.intensity-red]="set.intensity === 10"

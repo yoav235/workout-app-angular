@@ -81,16 +81,36 @@
   box-sizing: border-box;
 }
 
+.set-row {
+  background-color: hsl(210, 10%, 90%);
+}
+
 .set-row.intensity-green {
-  background-color: #d4f5d4;
+  background-color: hsl(142, 50%, 80%);
 }
 
 .set-row.intensity-yellow {
-  background-color: #fff9c4;
+  background-color: hsl(45, 80%, 80%);
 }
 
 .set-row.intensity-red {
-  background-color: #ffd6d6;
+  background-color: hsl(0, 70%, 80%);
+}
+
+.set-row.completed {
+  background-color: hsl(210, 10%, 60%);
+}
+
+.set-row.intensity-green.completed {
+  background-color: hsl(142, 50%, 55%);
+}
+
+.set-row.intensity-yellow.completed {
+  background-color: hsl(45, 80%, 58%);
+}
+
+.set-row.intensity-red.completed {
+  background-color: hsl(0, 70%, 58%);
 }
 
 .delete-btn {
