@@ -23,6 +23,79 @@
   color: #777;
 }
 
+.rest-timer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.timer-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.timer-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.timer-btn {
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #f5f5f5;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.timer-btn:hover:not(:disabled) {
+  background: #e0e0e0;
+}
+
+.timer-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.timer-label {
+  font-weight: 600;
+  color: #555;
+}
+
+.timer-duration-input {
+  width: 52px;
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.timer-duration-input:disabled {
+  background: #f0f0f0;
+  color: #aaa;
+}
+
+.timer-unit {
+  color: #777;
+}
+
+.timer-countdown {
+  margin-left: 6px;
+  font-weight: 600;
+  color: #bbb;
+  min-width: 36px;
+}
+
+.timer-countdown.active {
+  color: #4a90e2;
+  font-size: 1.05rem;
+}
+
 .comment {
   width: 100%;
   padding: 8px;

@@ -2,6 +2,30 @@
   <h2 class="exercise-name">{{ exerciseName }}</h2>
   <p class="muscle-groups" *ngIf="muscleGroups.length > 0">{{ muscleGroups.join(', ') }}</p>
 
+  <div class="rest-timer">
+    <div class="timer-row">
+      <span class="timer-label">Rest</span>
+      <input
+        type="number"
+        [(ngModel)]="restDuration"
+        min="1"
+        max="600"
+        class="timer-duration-input"
+        [disabled]="isRunning()"
+      />
+      <span class="timer-unit">sec</span>
+      <span class="timer-countdown" [class.active]="isRunning()">
+        {{ isRunning() ? formatTime(timeLeft()) : '—' }}
+      </span>
+    </div>
+    <div class="timer-controls">
+      <button class="timer-btn" (click)="adjustTime(-10)">-10s</button>
+      <button class="timer-btn" (click)="adjustTime(10)">+10s</button>
+      <button class="timer-btn" (click)="stopTimer()" [disabled]="!isRunning()">Stop</button>
+      <button class="timer-btn" (click)="resetTimer()" [disabled]="!isRunning()">Reset</button>
+    </div>
+  </div>
+
   <textarea
     class="comment"
     [(ngModel)]="comment"
@@ -41,6 +65,7 @@
         type="checkbox"
         [(ngModel)]="set.completed"
         class="completed-checkbox"
+        (change)="onSetCompleted(set)"
       />
       <input
         type="number"
