@@ -2,11 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { WorkoutItemComponent } from '../workout-item-component/workout-item-component';
-
-interface Workout {
-  name: string;
-  muscleGroups: string[];
-}
+import { Router } from '@angular/router';
+import { WorkoutService, Exercise } from '../workout.service';
 
 @Component({
   selector: 'app-workout-list-component',
@@ -15,10 +12,6 @@ interface Workout {
   styleUrl: './workout-list-component.css',
 })
 export class WorkoutListComponent {
-  workouts: Workout[] = [
-    { name: 'Bench Press', muscleGroups: ['Chest'] }
-  ];
-
   availableMuscleGroups: string[] = [
     'Chest', 'Back', 'Shoulders', 'Biceps', 'Triceps',
     'Quadriceps', 'Hamstrings', 'Glutes', 'Calves', 'Core', 'Forearms'
@@ -27,6 +20,20 @@ export class WorkoutListComponent {
   showForm = false;
   newWorkoutName = '';
   selectedMuscleGroups: string[] = [];
+
+  constructor(public workoutService: WorkoutService, private router: Router) {}
+
+  exitWorkout(): void {
+    this.router.navigate(['/ChooseWorkout']);
+  }
+
+  get exercises(): Exercise[] {
+    return this.workoutService.activePlan?.exercises ?? [];
+  }
+
+  get planName(): string {
+    return this.workoutService.activePlan?.name ?? 'Workout';
+  }
 
   openForm(): void {
     this.showForm = true;
@@ -39,8 +46,8 @@ export class WorkoutListComponent {
   }
 
   addWorkout(): void {
-    if (!this.newWorkoutName.trim()) return;
-    this.workouts.push({
+    if (!this.newWorkoutName.trim() || !this.workoutService.activePlan) return;
+    this.workoutService.activePlan.exercises.push({
       name: this.newWorkoutName.trim(),
       muscleGroups: [...this.selectedMuscleGroups]
     });

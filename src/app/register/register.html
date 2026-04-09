@@ -1,0 +1,30 @@
+<div class="register-page">
+  <div class="register-card">
+    <h1 class="register-title">Create Account</h1>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-input"
+        placeholder="Username"
+        [(ngModel)]="username"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="email"
+        class="form-input"
+        placeholder="Email"
+        [(ngModel)]="email"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        class="form-input"
+        placeholder="Password"
+        [(ngModel)]="password"
+      />
+    </div>
+    <button class="btn btn-primary" (click)="register()">Register</button>
+  </div>
+</div>

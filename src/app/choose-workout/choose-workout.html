@@ -1,0 +1,41 @@
+<div class="page">
+  <div class="header">
+    <button class="btn btn-primary" (click)="createNew()">+ Create New Workout</button>
+    <button class="btn btn-danger" (click)="signOut()">Sign Out</button>
+  </div>
+
+  <h1 class="page-title">Choose a Workout</h1>
+
+  @if (plans.length === 0) {
+    <p class="empty">No workout plans yet. Create one!</p>
+  } @else {
+    <div class="carousel">
+      @for (plan of plans; track plan.id) {
+        <div class="card" (dblclick)="selectPlan(plan)">
+          <button class="delete-btn" (click)="promptDelete($event, plan.id)">✕</button>
+          <h2 class="card-name">{{ plan.name }}</h2>
+          <div class="tags">
+            @for (group of plan.muscleGroups; track group) {
+              <span class="tag">{{ group }}</span>
+            }
+            @if (plan.muscleGroups.length === 0) {
+              <span class="tag tag-empty">No muscle groups</span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
+
+@if (deletingPlanId !== null) {
+  <div class="overlay" (click)="cancelDelete()">
+    <div class="confirm-modal" (click)="$event.stopPropagation()">
+      <p class="confirm-text">Delete Workout?</p>
+      <div class="confirm-actions">
+        <button class="btn btn-danger" (click)="confirmDelete()">Yes</button>
+        <button class="btn btn-secondary" (click)="cancelDelete()">No</button>
+      </div>
+    </div>
+  </div>
+}

@@ -1,18 +1,23 @@
+<div class="workout-header">
+  <h1 class="plan-title">{{ planName }}</h1>
+  <button class="exit-btn" (click)="exitWorkout()">Exit Workout</button>
+</div>
+
 <div class="item-container">
   <app-workout-item-component
-    *ngFor="let workout of workouts"
-    [exerciseName]="workout.name"
-    [muscleGroups]="workout.muscleGroups"
+    *ngFor="let exercise of exercises"
+    [exerciseName]="exercise.name"
+    [muscleGroups]="exercise.muscleGroups"
   ></app-workout-item-component>
 </div>
 
-<button class="add-workout-btn" (click)="openForm()">+ Add Workout</button>
+<button class="add-workout-btn" (click)="openForm()">+ Add Exercise</button>
 
 <div class="modal-overlay" *ngIf="showForm" (click)="closeForm()">
   <div class="modal" (click)="$event.stopPropagation()">
-    <h2>New Workout</h2>
+    <h2>New Exercise</h2>
 
-    <label for="workoutName">Workout Name</label>
+    <label for="workoutName">Exercise Name</label>
     <input
       id="workoutName"
       type="text"
